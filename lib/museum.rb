@@ -38,7 +38,17 @@ class Museum
   end
 
   def draw_lottery_winner(exhibit)
+    return nil if ticket_lottery_contestants(exhibit).empty?
+
     ticket_lottery_contestants(exhibit).sample.name
+  end
+
+  def announce_lottery_winner(exhibit)
+    no_winner = "No winners for this lottery"
+
+    return no_winner if ticket_lottery_contestants(exhibit).empty?
+
+    "#{ticket_lottery_contestants(exhibit).sample.name} has won the #{exhibit.name} exhibit lottery"
   end
 
   private
