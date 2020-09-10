@@ -37,6 +37,10 @@ class Museum
     end
   end
 
+  def draw_lottery_winner(exhibit)
+    ticket_lottery_contestants(exhibit).sample.name
+  end
+
   private
 
   def find_patrons_interested(exhibit)
