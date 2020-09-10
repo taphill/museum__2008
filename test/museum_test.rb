@@ -33,4 +33,29 @@ class MuseumTest  < Minitest::Test
 
     assert_equal expected, dmns.exhibits
   end
+
+  def test_it_can_recommend_exhibits
+    dmns = Museum.new("Denver Museum of Nature and Science")
+
+    gems_and_minerals = Exhibit.new({name: "Gems and Minerals", cost: 0})
+    dead_sea_scrolls = Exhibit.new({name: "Dead Sea Scrolls", cost: 10})
+    imax = Exhibit.new({name: "IMAX",cost: 15})
+
+    dmns.add_exhibit(gems_and_minerals)
+    dmns.add_exhibit(dead_sea_scrolls)
+    dmns.add_exhibit(imax)
+
+    patron_1 = Patron.new("Bob", 20)
+    patron_2 = Patron.new("Sally", 20)
+
+    patron_1.add_interest("Dead Sea Scrolls")
+    patron_1.add_interest("Gems and Minerals")
+    patron_2.add_interest("IMAX")
+
+    expected_1 = [gems_and_minerals, dead_sea_scrolls]
+    expected_2 = [imax]
+
+    assert_equal expected_1, dmns.recommend_exhibits(patron_1)
+    assert_equal expected_2, dmns.recommend_exhibits(patron_2)
+  end
 end
