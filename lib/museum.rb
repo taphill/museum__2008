@@ -48,7 +48,7 @@ class Museum
 
     return no_winner if ticket_lottery_contestants(exhibit).empty?
 
-    "#{ticket_lottery_contestants(exhibit).sample.name} has won the #{exhibit.name} exhibit lottery"
+    "#{draw_lottery_winner(exhibit)} has won the #{exhibit.name} exhibit lottery"
   end
 
   private
